@@ -1,0 +1,54 @@
+unit cliente;
+
+interface
+
+type
+  TCliente = class
+
+  private
+    FEmail: string;
+    FNome: string;
+
+  public
+    property Nome: string read FNome write FNome;
+    property Email: string read FEmail write FEmail;
+    function ExibirDados(): string; virtual; abstract;
+  end;
+
+type
+  TClientePessoaFisica = class(TCliente)
+
+  private
+    FCPF: string;
+  public
+    property CPF: string read FCPF write FCPF;
+    function ExibirDados(): string; override;
+  end;
+
+type
+  TClientePessoaJuridica = class(TCliente)
+
+  private
+    FCNPJ: string;
+
+  public
+  property CNPJ: string read FCNPJ write FCNPJ;
+  function ExibirDados(): string; override;
+  end;
+
+
+implementation
+
+function TClientePessoaFisica.ExibirDados: string;
+begin
+   Result := 'Nome: ' + Nome + ' - CPF: ' + CPF;
+end;
+
+{ TClientePessoaJuridica }
+
+function TClientePessoaJuridica.ExibirDados: string;
+begin
+
+end;
+
+end.
